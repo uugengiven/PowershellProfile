@@ -9,6 +9,16 @@ Function Edit-Profile
     npp $profile
 }
 
+function IsAdmin()
+{
+	if (([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] "Administrator")) {
+		return $true
+	} else {
+		return $false
+	}
+	
+}
+
 Function Write-GitInfo($branchColor, $commitColor, $untrackedColor, $behindColor)
 {
 	$prompt_string = ""
@@ -45,18 +55,13 @@ Function Write-GitInfo($branchColor, $commitColor, $untrackedColor, $behindColor
 
 Function Write-UserInfo($userColor, $adminColor, $machineColor)
 {
-	if (([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] "Administrator")) {
-		$isAdmin = $true
+	$nameColor = $usercolor
+	if (IsAdmin)
+	{
+		$nameColor = $adminColor
 	}
 	
-	if ($isAdmin)
-	{
-		Write-Host ("Admin") -nonewline -foregroundcolor $adminColor
-	}
-	else
-	{
-		Write-Host ($env:username) -nonewline -foregroundcolor $userColor
-	}
+	Write-Host ($env:username) -nonewline -foregroundcolor $nameColor
 	Write-Host ('@' + [System.Environment]::MachineName + " ") -nonewline -foregroundcolor $machineColor
 }
 
