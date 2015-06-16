@@ -1,5 +1,5 @@
 $NPP = "C:\Programs\NotepadPlusPlus\notepad++.exe"
-$SCRIPTS = "C:\users\[user]\psScripts\"
+$SCRIPTS = "$env:USERPROFILE\Documents\psScripts\"
 $Source = "$env:USERPROFILE\Documents\Projects\"
 
 Set-Alias npp $NPP
