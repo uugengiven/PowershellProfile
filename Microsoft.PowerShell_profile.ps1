@@ -4,6 +4,9 @@ $Source = "$env:USERPROFILE\Documents\Projects\"
 
 Set-Alias npp $NPP
 
+$FSassembly = [Reflection.Assembly]::Loadfile($scripts + 'AlphaFS.dll')
+$AlphaFSDir = [Alphaleonis.Win32.Filesystem.Directory]
+
 Function Edit-Profile
 {
     npp $profile
@@ -73,4 +76,32 @@ Function prompt
 	Write-GitInfo green red red red
 	Write-Host (">") -nonewline -foregroundcolor yellow
 	return " "	
+}
+
+Function Really-Delete($directory)
+{
+	#$FSassembly = [Reflection.Assembly]::Loadfile($Scripts + 'AlphaFS.dll')
+	#$AlphaFSDir = [Alphaleonis.Win32.Filesystem.Directory]
+	# These variables are now global for other usages
+
+	if (-Not [System.IO.Path]::IsPathrooted($directory)) {
+		$directory = $pwd.path + "\" + (split-path $directory -leaf) }
+
+	$title = "Delete Files"
+	$message = "Are you sure you wish to delete " + $directory
+
+	$yes = New-Object System.Management.Automation.Host.ChoiceDescription "&Yes", `
+    "Deletes all the files in the folder."
+
+	$no = New-Object System.Management.Automation.Host.ChoiceDescription "&No", `
+    "Retains all the files in the folder."
+
+	$options = [System.Management.Automation.Host.ChoiceDescription[]]($yes, $no)
+
+	$result = $host.ui.PromptForChoice($title, $message, $options, 0) 
+	
+	if ($result -eq 0) {
+	write-host "Deleted - " $directory
+	$AlphaFSDir::Delete($directory, $true, $true) }
+	
 }

@@ -3,6 +3,8 @@ Powershell_profile.ps1 for using git in powershell
 
 Copy this file, after updating the directories to match your machine, to %USER_PROFILE%\Documents\WindowsPowershell\
 
+You will also need to download the [AlphaFS](https://github.com/alphaleonis/AlphaFS) dll and put it into your scripts directory.
+
 Changes to the prompt:
 ----------------------
 
@@ -11,6 +13,13 @@ The prompt now only shows the username @ computer name in most directories. If i
 If the powershell window is an admin window, the color of the username is in red.
 
 The window title now shows the current directory.
+
+New Functions:
+--------------
+
+Really-Delete $directory
+
+This will permanently delete a directory and all of its contents, even if there are file names/paths that are beyond the 260 character limit.
 
 Git:
 ----
