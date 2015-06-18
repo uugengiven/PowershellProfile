@@ -2,6 +2,12 @@ $NPP = "C:\Programs\NotepadPlusPlus\notepad++.exe"
 $SCRIPTS = "$env:USERPROFILE\Documents\psScripts\"
 $Source = "$env:USERPROFILE\Documents\Projects\"
 
+$GitEnabled = $false
+if (Get-Command git -ErrorAction SilentlyContinue)
+{
+	$GitEnabled = $true
+}
+
 Set-Alias npp $NPP
 
 Function Edit-Profile
@@ -70,7 +76,7 @@ Function prompt
 	$host.ui.rawui.Windowtitle = $(get-location)
 
 	Write-UserInfo magenta red cyan
-	Write-GitInfo green red red red
+	if ($GitEnabled) {	Write-GitInfo green red red red }
 	Write-Host (">") -nonewline -foregroundcolor yellow
 	return " "	
 }
