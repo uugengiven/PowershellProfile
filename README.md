@@ -10,12 +10,15 @@ If the powershell window is an admin window, the color of the username is in red
 
 The window title now shows the current directory.
 
-New Functions:
---------------
+### New Functions:
 
-Really-Delete $directory
+`Alpha-Delete $directory`
 
 This will permanently delete a directory and all of its contents, even if there are file names/paths that are beyond the 260 character limit.
+
+`Alpha-Copy $source $destination`
+
+This will copy a source directory and all of its contents to the destination directory. This can work with file names/paths that are beyond the 260 character limit.
 
 ### Git:
 

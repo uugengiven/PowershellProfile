@@ -84,14 +84,22 @@ Function prompt
 	return " "	
 }
 
-Function Really-Delete($directory)
+Function Get-Directory($directory)
+{
+	# Helper function for AlphaFS as it doesn't know what directory it is being invoked from
+	if (-Not [System.IO.Path]::IsPathrooted($directory)) {
+		$directory = $pwd.path + "\" + (split-path $directory -leaf) }
+		
+	return $directory
+}
+
+Function Alpha-Delete($directory)
 {
 	#$FSassembly = [Reflection.Assembly]::Loadfile($Scripts + 'AlphaFS.dll')
 	#$AlphaFSDir = [Alphaleonis.Win32.Filesystem.Directory]
 	# These variables are now global for other usages
 
-	if (-Not [System.IO.Path]::IsPathrooted($directory)) {
-		$directory = $pwd.path + "\" + (split-path $directory -leaf) }
+	$directory = Get-Directory($directory)
 
 	$title = "Delete Files"
 	$message = "Are you sure you wish to delete " + $directory
@@ -110,4 +118,11 @@ Function Really-Delete($directory)
 	write-host "Deleted - " $directory
 	$AlphaFSDir::Delete($directory, $true, $true) }
 	
+}
+
+Function Alpha-Copy ($src, $dest)
+{
+	$src = Get-Directory($src)
+	$dest = Get-Directory($dest)
+	$AlphaFSDir::Copy($src, $dest)
 }
