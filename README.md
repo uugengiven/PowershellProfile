@@ -1,6 +1,14 @@
 ## Powershell_profile.ps1 for using git in powershell
 
-Copy this file, after updating the directories to match your machine, to %USER_PROFILE%\Documents\WindowsPowershell\
+Copy this file to `%USER_PROFILE%\Documents\WindowsPowershell\`
+
+You may need to alter the directories for `$scripts`, `$source`, and `$npp` to match your system set up.
+
+To use this fully, you will need to install the following programs:
+
+* [Notepad++](https://notepad-plus-plus.org/download/) - Update your `$npp` variable to match the installed location of notepad++.exe
+* [Git](https://git-scm.com/downloads) - This is optional, the script will work without it, you just won't get any Git specific formatting
+* [AlphaFS](https://github.com/alphaleonis/AlphaFS/releases/latest) - download the zip file and copy the file `AlphaFS.2.0.1\lib\net451\AlphaFS.dll` to your `$scripts` directory
 
 ### Changes to the prompt:
 
