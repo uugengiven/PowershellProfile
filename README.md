@@ -1,12 +1,8 @@
-Powershell_profile.ps1 for using git in powershell
-==================================================
+## Powershell_profile.ps1 for using git in powershell
 
 Copy this file, after updating the directories to match your machine, to %USER_PROFILE%\Documents\WindowsPowershell\
 
-You will also need to download the [AlphaFS](https://github.com/alphaleonis/AlphaFS) dll and put it into your scripts directory.
-
-Changes to the prompt:
-----------------------
+### Changes to the prompt:
 
 The prompt now only shows the username @ computer name in most directories. If it is a git directory, there will be some extra info (see Git section).
 
@@ -21,8 +17,7 @@ Really-Delete $directory
 
 This will permanently delete a directory and all of its contents, even if there are file names/paths that are beyond the 260 character limit.
 
-Git:
-----
+### Git:
 
 If the current directory is a git directory, the prompt will display the current branch and will show whether the current branch has untracked files (?), changes to be committed (*) or change not pulled from the remote server (O).
 
