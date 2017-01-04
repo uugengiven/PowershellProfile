@@ -126,3 +126,15 @@ Function Alpha-Copy ($src, $dest)
 	$dest = Get-Directory($dest)
 	$AlphaFSDir::Copy($src, $dest)
 }
+
+Function Get-YoutubeMP3($url, $dest = "$env:USERPROFILE\Music")
+{
+	$dest = $dest + "\%(title)s-%(id)s.%(ext)s"
+	& "$scripts\youtube-dl.exe" --extract-audio --audio-format "mp3" -o $dest $url
+}
+
+Function Get-YoutubeVideo($url, $dest = "$env:USERPROFILE\Music")
+{
+	$dest = $dest + "\%(title)s-%(id)s.%(ext)s"
+	& "$scripts\youtube-dl.exe" -o $dest $url
+}
